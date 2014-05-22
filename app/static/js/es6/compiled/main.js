@@ -13,5 +13,15 @@ function ajax(url, type) {
     success: success
   });
 }
+(function() {
+  'use strict';
+  $(document).ready(init);
+  function init() {
+    $('.dropdown-menu').find('form').click(dropdown);
+  }
+  function dropdown(e) {
+    e.stopPropagation();
+  }
+})();
 
 //# sourceMappingURL=main.map
