@@ -17,7 +17,7 @@ html
 
   body
 
-    .container
+  .container
     .row
         .col-md-12
           nav.navbar.navbar-default(role='navigation')
@@ -35,9 +35,9 @@ html
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li.active
-                  a(href='/') Home
+                  a(class='glyphicon glyphicon-home', href='/') Home
                 li
-                  a(href=/#{userId}/dashboard) Dashboard
+                  a(class='glyphicon glyphicon-user', href='/dashboard') Dashboard
 
 
               ul.nav.navbar-nav.navbar-right
