@@ -21,16 +21,16 @@ class User{
           });
         }
       });
-    }
+    }// end register
 
-  login(func){
+  login(user, func){
     var isMatch = bcrypt.compareSync(this.password, user.password);
     if(isMatch){
       func(user);
     }else{
       func(null);
     }
-  }
+  }// end login
 
   static findByUserId(id, func){
     id = Mongo.ObjectID(id);
@@ -38,7 +38,7 @@ class User{
 
       func(result);
     });
-  }
+  }// end gindByUserId
 
 
 

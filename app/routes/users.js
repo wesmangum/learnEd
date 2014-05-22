@@ -25,18 +25,23 @@ exports.register = (req, res)=>{
       res.redirect('/users/student');
     }
 
-  });//figure out what func goes here.
+  });
 };
 
-exports.login = (req, res)=>{
-  users.findOne({email: req.body.email}, user=>{
-    user.login(user=>{
-      if(user.type === 'teacher'){
-        res.redirect('/users/teacher');
-      }else{
-        res.redirect('/users/student');
-      }
+  exports.login = (req, res)=>{
+    users.findOne({email: req.body.email}, user=>{
+      user.login(user, user=>{
+        if(user.type === 'teacher'){
+          res.redirect('/users/teacher');
+        }
+        else{
+          res.redirect('/users/student');
+        }
     });
-  });
-  //users.login({email: req.body.email, password: req.body.password});
+  });// end login
+
+  exports.logout = (req, res)=>{
+    req.session.destroy();
+    res.redirect('/');
+  };
 };

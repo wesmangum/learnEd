@@ -18,12 +18,12 @@ function load(app, fn){
   var users = traceur.require(__dirname + '/../routes/users.js');
 
   app.get('/', dbg, home.index);
-  
+
   app.get('/login', dbg, users.loadLogin);
   app.post('/login', dbg, users.login);
   app.get('/register', dbg, users.loadRegister);
   app.post('/register', dbg, users.register);
-
+  app.get('/logout', dbg, users.logout);
   console.log('Routes Loaded');
   fn();
 }
