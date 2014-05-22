@@ -13,10 +13,7 @@ function ajax(url, type,  data={}, success=response=>console.log(response), data
 
   function init(){
     $('.dropdown-menu').find('form').click(dropdown);
-
   }
-
-
   //Handles menu   drop down
   function dropdown(e){
     e.stopPropagation();
