@@ -2,6 +2,8 @@
 var users = global.nss.db.collection('users');
 var bcrypt = require('bcrypt');
 var Mongo = require('mongodb');
+var _ = require('lodash');
+
 
 class User{
   constructor(object){
@@ -24,7 +26,11 @@ class User{
     }// end register
 
   login(user, func){
-    var isMatch = bcrypt.compareSync(this.password, user.password);
+    console.log('IN YOUR USER');
+    console.log(user.password);
+    var isMatch = (this.password === user.password);//bcrypt.compareSync
+    console.log(this.password);
+    console.log(isMatch);
     if(isMatch){
       func(user);
     }else{
@@ -36,6 +42,13 @@ class User{
     id = Mongo.ObjectID(id);
     users.findOne({_id: id}, (error, result)=>{
 
+      func(result);
+    });
+  }// end gindByUserId
+
+  static findByUserEmail(email, func){
+    users.findOne({email: email}, (error, result)=>{
+      result = _.create(User.prototype, result);
       func(result);
     });
   }// end gindByUserId

@@ -1,5 +1,5 @@
 'use strict';
-var users = global.nss.db.collection('users');
+//var users = global.nss.db.collection('users');
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
 
@@ -28,20 +28,24 @@ exports.register = (req, res)=>{
   });
 };
 
-  exports.login = (req, res)=>{
-    users.findOne({email: req.body.email}, user=>{
-      user.login(user, user=>{
-        if(user.type === 'teacher'){
-          res.redirect('/users/teacher');
-        }
-        else{
-          res.redirect('/users/student');
-        }
-    });
-  });// end login
+//
 
-  exports.logout = (req, res)=>{
-    req.session.destroy();
-    res.redirect('/');
-  };
-};
+exports.login = (req, res)=>{
+  //var loginData = {email: req.body.email, password: req.body.password};
+  User.findByUserEmail(req.body.email, user=>{
+    console.log(user);
+    user.login(user, userData=>{
+      if(userData.type === 'teacher'){
+        res.redirect('/users/teacher');
+      }
+      else{
+        res.redirect('/users/student');
+      }
+    });
+  });
+};// end login
+
+exports.logout = (req, res)=>{
+  req.session.destroy();
+  res.redirect('/');
+};// end logout
