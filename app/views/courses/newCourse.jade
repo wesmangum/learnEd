@@ -1,0 +1,8 @@
+extends ../shared/template
+
+block content
+  h1 new course
+  form(method='post', action='/courses/create')
+    input(type='text', placeholder='Course Title', name = 'title', autofocus= true)
+    textarea(placeholder='Course Description', name='description')
+    button Submit
