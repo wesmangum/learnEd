@@ -14,6 +14,7 @@ exports.loadRegister = (req, res)=>{
 exports.register = (req, res)=>{
   var user = new User(req.body);
   user.register(user=>{
+    debugger;
     if(user){
       req.session.userId = user._id;
     }else{
