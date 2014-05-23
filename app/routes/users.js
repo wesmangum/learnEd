@@ -26,26 +26,34 @@ exports.register = (req, res)=>{
     }
 
   });
-};
+};// end register
 
 //
 
 exports.login = (req, res)=>{
-  //var loginData = {email: req.body.email, password: req.body.password};
   User.findByUserEmail(req.body.email, user=>{
     console.log(user);
-    user.login(req.body.password, userData=>{
-      if(userData.type === 'teacher'){
-        res.redirect('/users/teacher');
+    req.session.userId = user._id.toString();
+    user.login(req.body.password, match=>{
+      console.log('MATCHY MATCH');
+      console.log(match);
+      if(match){
+        if(user.type === 'teacher'){
+          res.redirect('/users/teacher');
+        }
+        else{
+          res.redirect('/users/student');
+        }
       }
       else{
-        res.redirect('/users/student');
+        res.redirect('/');
       }
+
     });
   });
 };// end login
 
 exports.logout = (req, res)=>{
-  req.session.destroy();
+  req.session = null;
   res.redirect('/');
 };// end logout

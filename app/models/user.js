@@ -26,16 +26,9 @@ class User{
     }// end register
 
   login(password, func){
-    console.log('IN YOUR USER');
-    console.log(password);
     var isMatch = bcrypt.compareSync(password, this.password);//bcrypt.compareSync
-    console.log(this.password);
-    console.log(isMatch);
-    if(isMatch){
-      func(password);
-    }else{
-      func(null);
-    }
+    func(isMatch);
+
   }// end login
 
   static findByUserId(id, func){
