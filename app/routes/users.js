@@ -19,16 +19,8 @@ exports.register = (req, res)=>{
       req.session.userId = null;
     }
     res.redirect('users/dashboard', {user: user});
-    // if(user.type === 'teacher'){
-    //   res.render('users/teacher', {user: user});
-    //
-    // }else{
-    //   res.render('users/student', {user: user});
-    // }
   });
 };// end register
-
-//
 
 exports.login = (req, res)=>{
   User.findByUserEmail(req.body.email, user=>{
@@ -40,11 +32,9 @@ exports.login = (req, res)=>{
       else{
         res.redirect('/');
       }
-
     });
   });
 };// end login
-
 
 exports.logout = (req, res)=>{
   req.session.userId = null;
@@ -60,5 +50,4 @@ exports.dashboard = (req, res)=>{
       res.render(`users/student`, {user: user});
     }
   });
-  console.log('you GOT TO DASHBOARD');
 };// end logout
