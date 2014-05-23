@@ -24,12 +24,11 @@ function load(app, fn){
   app.get('/register', dbg, users.loadRegister);
   app.post('/register', dbg, users.register);
   app.get('/logout', dbg, users.logout);
+
   app.get('/users/dashboard', dbg, users.dashboard);
 
   app.get('/courses/create', dbg, courses.loadCourseForm);
   app.post('/courses/create', dbg, courses.create);
-
-  app.get('/users/:type');
 
   console.log('Routes Loaded');
   fn();
