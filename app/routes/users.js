@@ -12,27 +12,26 @@ exports.loadRegister = (req, res)=>{
 
 exports.register = (req, res)=>{
   var user = new User(req.body);
-  user.register(user=>{
+  user.registerUser(user=>{
     if(user){
       req.session.userId = user._id;
     }else{
       req.session.userId = null;
     }
-    res.redirect('users/dashboard', {user: user});
+    res.redirect('/users/dashboard');
   });
 };// end register
 
 exports.login = (req, res)=>{
-  User.findByUserEmail(req.body.email, user=>{
-    req.session.userId = user._id.toString();
-    user.login(req.body.password, match=>{
-      if(match){
-        res.redirect('users/dashboard');
-      }
-      else{
-        res.redirect('/');
-      }
-    });
+  var user = new User(req.body);
+  user.login(user=>{
+    if(user){
+      req.session.userId = user._id;
+      res.redirect('/users/dashboard');
+    }
+    else{
+      res.redirect('/');
+    }
   });
 };// end login
 

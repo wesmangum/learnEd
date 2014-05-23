@@ -14,20 +14,27 @@ class User{
   }
 
 
-  register(func){
+  registerUser(func){
     users.findOne({email: this.email}, (error, user)=>{
       if(!user){
         this.password = bcrypt.hashSync(this.password, 8);
         users.save(this, (error, user)=>{
-            func(user);
-          });
-        }
-      });
-    }// end register
+          func(user);
+        });
+      }
+    });
+  }// end register
 
-  login(password, func){
-    var isMatch = bcrypt.compareSync(password, this.password);//bcrypt.compareSync
-    func(isMatch);
+  login(func){
+    users.findOne({email: this.email}, (error, user)=>{
+      var isMatch = bcrypt.compareSync(this.password, user.password);//bcrypt.compareSync
+      if(isMatch) {
+        func(user);
+      }
+      else {
+        func(null);
+      }
+    });
 
   }// end login
 
