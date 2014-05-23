@@ -20,12 +20,11 @@ function load(app, fn){
 
   app.get('/', dbg, home.index);
 
-  // app.get('/login', dbg, users.loadLogin);
   app.post('/login', dbg, users.login);
   app.get('/register', dbg, users.loadRegister);
   app.post('/register', dbg, users.register);
   app.get('/logout', dbg, users.logout);
-  app.get('/dashboard', dbg, users.dashboard);
+  app.get('/users/dashboard', dbg, users.dashboard);
 
   app.get('/courses/create', dbg, courses.loadCourseForm);
   app.post('/courses/create', dbg, courses.create);

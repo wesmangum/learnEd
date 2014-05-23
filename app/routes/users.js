@@ -6,11 +6,6 @@ var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
 var Mongo = require('mongodb');
 
-
-// exports.loadLogin = (req, res)=>{
-//   res.render('users/login', {title: 'LearnEd: login'});
-// };
-
 exports.loadRegister = (req, res)=>{
   res.render('users/register', {title: 'LearnEd: register'});
 };
@@ -23,12 +18,13 @@ exports.register = (req, res)=>{
     }else{
       req.session.userId = null;
     }
-    if(user.type === 'teacher'){
-      res.render('users/teacher', {user: user});
-
-    }else{
-      res.render('users/student', {user: user});
-    }
+    res.redirect('users/dashboard', {user: user});
+    // if(user.type === 'teacher'){
+    //   res.render('users/teacher', {user: user});
+    //
+    // }else{
+    //   res.render('users/student', {user: user});
+    // }
   });
 };// end register
 
@@ -39,12 +35,7 @@ exports.login = (req, res)=>{
     req.session.userId = user._id.toString();
     user.login(req.body.password, match=>{
       if(match){
-        if(user.type === 'teacher'){
-          res.render(`users/teacher`, {user: user});
-        }
-        else{
-          res.render(`users/student`, {user: user});
-        }
+        res.redirect('users/dashboard');
       }
       else{
         res.redirect('/');
@@ -61,4 +52,13 @@ exports.logout = (req, res)=>{
 };// end logout
 
 exports.dashboard = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    if(user.type === 'teacher'){
+      res.render(`users/teacher`, {user: user});
+    }
+    else{
+      res.render(`users/student`, {user: user});
+    }
+  });
+  console.log('you GOT TO DASHBOARD');
 };// end logout
