@@ -1,4 +1,5 @@
 'use strict';
+
 //var users = global.nss.db.collection('users');
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
