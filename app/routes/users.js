@@ -34,7 +34,7 @@ exports.login = (req, res)=>{
   //var loginData = {email: req.body.email, password: req.body.password};
   User.findByUserEmail(req.body.email, user=>{
     console.log(user);
-    user.login(user, userData=>{
+    user.login(req.body.password, userData=>{
       if(userData.type === 'teacher'){
         res.redirect('/users/teacher');
       }

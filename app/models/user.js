@@ -25,14 +25,14 @@ class User{
       });
     }// end register
 
-  login(user, func){
+  login(password, func){
     console.log('IN YOUR USER');
-    console.log(user.password);
-    var isMatch = (this.password === user.password);//bcrypt.compareSync
+    console.log(password);
+    var isMatch = bcrypt.compareSync(password, this.password);//bcrypt.compareSync
     console.log(this.password);
     console.log(isMatch);
     if(isMatch){
-      func(user);
+      func(password);
     }else{
       func(null);
     }
