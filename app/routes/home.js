@@ -1,5 +1,11 @@
 'use strict';
 
 exports.index = (req, res)=>{
-  res.render('home/index', {title: 'LearnEd'});
+
+  var isLogin = !!req.session.userId;
+
+  console.log('LOGIN');
+  console.log(isLogin);
+  
+  res.render('home/index', {isLogin:req.session, title: 'LearnEd'});
 };

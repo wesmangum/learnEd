@@ -64,8 +64,11 @@ html
                                 | Remember me
                             .form-group
                               button.btn.btn-success.btn-block(type='submit') Sign in
-                li
-                  a(href='/logout') Logout
+                //indent
+                - console.log(isLogin)
+                if(isLogin !== null)
+                  li
+                    a(href='/logout') Logout
             //
                /.navbar-collapse
 

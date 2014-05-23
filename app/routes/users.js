@@ -1,5 +1,6 @@
 /* jshint unused:false*/
 'use strict';
+
 var users = global.nss.db.collection('users');
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
@@ -55,7 +56,7 @@ exports.login = (req, res)=>{
 
 
 exports.logout = (req, res)=>{
-  req.session = null;
+  req.session.userId = null;
   res.redirect('/');
 };// end logout
 
