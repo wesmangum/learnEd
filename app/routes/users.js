@@ -56,6 +56,6 @@ exports.login = (req, res)=>{
 
 
 exports.logout = (req, res)=>{
-  req.session = null;
+  req.session.userId = null;
   res.redirect('/');
 };// end logout
