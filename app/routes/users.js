@@ -1,11 +1,10 @@
+/* jshint unused:false*/
 'use strict';
-//var users = global.nss.db.collection('users');
+
+var users = global.nss.db.collection('users');
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
-
-exports.loadLogin = (req, res)=>{
-  res.render('users/login', {title: 'LearnEd: login'});
-};
+var Mongo = require('mongodb');
 
 exports.loadRegister = (req, res)=>{
   res.render('users/register', {title: 'LearnEd: register'});
@@ -13,48 +12,41 @@ exports.loadRegister = (req, res)=>{
 
 exports.register = (req, res)=>{
   var user = new User(req.body);
-  user.register(user=>{
-    debugger;
+  user.registerUser(user=>{
     if(user){
       req.session.userId = user._id;
     }else{
       req.session.userId = null;
     }
-    if(user.type === 'teacher'){
-      res.redirect('/users/teacher');
-    }else{
-      res.redirect('/users/student');
-    }
-
+    res.redirect('/users/dashboard');
   });
 };// end register
 
-//
-
 exports.login = (req, res)=>{
-  User.findByUserEmail(req.body.email, user=>{
-    console.log(user);
-    req.session.userId = user._id.toString();
-    user.login(req.body.password, match=>{
-      console.log('MATCHY MATCH');
-      console.log(match);
-      if(match){
-        if(user.type === 'teacher'){
-          res.redirect('/users/teacher');
-        }
-        else{
-          res.redirect('/users/student');
-        }
-      }
-      else{
-        res.redirect('/');
-      }
-
-    });
+  var user = new User(req.body);
+  user.login(user=>{
+    if(user){
+      req.session.userId = user._id;
+      res.redirect('/users/dashboard');
+    }
+    else{
+      res.redirect('/');
+    }
   });
 };// end login
 
 exports.logout = (req, res)=>{
-  req.session = null;
+  req.session.userId = null;
   res.redirect('/');
+};// end logout
+
+exports.dashboard = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    if(user.type === 'teacher'){
+      res.render(`users/teacher`, {user: user});
+    }
+    else{
+      res.render(`users/student`, {user: user});
+    }
+  });
 };// end logout

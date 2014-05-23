@@ -10,8 +10,6 @@ html
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css')
     link(href='http://fonts.googleapis.com/css?family=Raleway:600', rel='stylesheet', type='text/css')
-    link(href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister', rel='stylesheet', type='text/css')
-
 
     link(href='/css/normalize.css', rel='stylesheet')
     link(href='/css/buttons.css', rel='stylesheet')
@@ -39,7 +37,7 @@ html
                 li.active
                   a(class='glyphicon glyphicon-home', href='/') Home
                 li
-                  a(class='glyphicon glyphicon-user', href='/dashboard') Dashboard
+                  a(class='glyphicon glyphicon-user', href='/users/dashboard') Dashboard
 
 
               ul.nav.navbar-nav.navbar-right
@@ -66,8 +64,11 @@ html
                                 | Remember me
                             .form-group
                               button.btn.btn-success.btn-block(type='submit') Sign in
-                li
-                  a(href='/logout') Logout
+                //indent
+                - console.log(isLogin)
+                if(isLogin !== null)
+                  li
+                    a(href='/logout') Logout
             //
                /.navbar-collapse
 
