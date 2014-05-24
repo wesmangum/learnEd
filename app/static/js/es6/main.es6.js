@@ -13,10 +13,16 @@ function ajax(url, type,  data={}, success=response=>console.log(response), data
 
   function init(){
     $('.dropdown-menu').find('form').click(dropdown);
+    $('.glyphicon').click(activeTab);
   }
   //Handles menu   drop down
   function dropdown(e){
     e.stopPropagation();
+  }
+
+  function activeTab() {
+    $('.active').removeClass('active');
+    $(this).parent().addClass('active');
   }
 
 })();

@@ -36,17 +36,18 @@ exports.login = (req, res)=>{
 };// end login
 
 exports.logout = (req, res)=>{
-  req.session.userId = null;
+  req.session = null;
   res.redirect('/');
 };// end logout
 
 exports.dashboard = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
-    if(user.type === 'teacher'){
-      res.render(`users/teacher`, {user: user});
-    }
-    else{
+    if(!user){
+      res.redirect('/');
+    }else if(user.type === 'student'){
       res.render(`users/student`, {user: user});
+    }else if(user.type === 'teacher'){
+      res.render(`users/teacher`, {user: user});
     }
   });
 };// end logout
