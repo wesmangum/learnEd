@@ -8,17 +8,16 @@ var Mongo = require('mongodb');
 
 
 exports.create = (req, res)=>{
-  console.log(req.session.userId);
   var courseObject = {teacherId: req.session.userId, description: req.body.description, title: req.body.title};
   //body needs to have teacherId, description, title
   var course = new Course(courseObject);
   courses.save(course, (error, course)=>{
-    Course.findAllByTeacherId(course.teacherId, (error, courses)=>{
-      res.render('courses/index', {courses: courses});
-    });
+    //Course.findAllByTeacherId(course.teacherId, (error, courses)=>{
+      res.render('courses/showCourse', {course: course});
+  //  });
   });
 };
 
 exports.loadCourseForm = (req, res)=>{
-  res.render('courses/newCourse', {title: 'Add Course'});
+  res.render('courses/courseSnippet', {title: 'Add Course'});
 };
