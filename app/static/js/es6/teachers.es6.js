@@ -8,7 +8,7 @@
   }
 
   function addCourse(){
-    ajax(`/courses/snippet`, 'get', null, html=>{
+    ajax(`/courses/courseSnippet`, 'get', null, html=>{
       $('#courseForm').append(html);
     });
   }

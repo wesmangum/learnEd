@@ -1,0 +1,39 @@
+extends ../shared/template
+
+block content
+  h1(data-id= course._id)= course.title
+  h3= course.description
+
+  #flashcards
+    if(!course.hasFlashCards)
+      button Create Flashcards
+      //flashcards/create
+
+    if(course.hasFlashCards)
+      button Show Flashcards
+
+
+  #tests
+    if(!course.hasTests)
+      button Create a test
+    if(course.hasTests)
+      button Show Test
+
+
+
+
+
+  //-
+  //- #flashContainer.well.well-sm
+  //-   #flashForm
+  //-   #flashcards
+  //-   button#addFlashCard New Flash Card
+  //-
+  //- #testContainer.well.well-sm
+  //-   #testForm
+  //-   #test
+  //-   button#addTest Add Test
+  //-
+
+block scripts
+  script(src='/js/es6/compiled/courses.js')
