@@ -15,6 +15,7 @@
     });
   }
 
+
   function addNewCard(){
     // var sideA = $('.sideA').val();
     // var sideB = $('.sideB').val();
