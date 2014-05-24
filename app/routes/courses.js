@@ -9,15 +9,19 @@ var Mongo = require('mongodb');
 
 exports.create = (req, res)=>{
   var courseObject = {teacherId: req.session.userId, description: req.body.description, title: req.body.title};
-  //body needs to have teacherId, description, title
   var course = new Course(courseObject);
   courses.save(course, (error, course)=>{
-    //Course.findAllByTeacherId(course.teacherId, (error, courses)=>{
-      res.render('courses/showCourse', {course: course});
-  //  });
+    Course.findAllByTeacherId(course.teacherId, (error, courses)=>{
+      res.render('courses/course', {course: course});
+    });
   });
 };
 
 exports.loadCourseForm = (req, res)=>{
-  res.render('courses/courseSnippet', {title: 'Add Course'});
+  res.render('courses/course', {title: 'Add Course'});
+};
+
+
+exports.courseForm = (req, res)=>{
+  res.render('courses/courseSnippet');
 };

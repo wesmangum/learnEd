@@ -11,6 +11,8 @@ class Course{
     this.teacherId = object.teacherId;
     this.description = object.description;
     this.title = object.title;
+    this.hasFlashCards = false;
+    this.hasTest = false;
   }
 
 
@@ -28,6 +30,15 @@ class Course{
       func(courses);
     });
   }// end gindByUserId
+
+  // get hasFlashCards(){
+  //   return this.hasFlashCards;
+  // }
+  //
+  // get hasTest(){
+  //   return this.hasTest;
+  // }
+
 
 
 

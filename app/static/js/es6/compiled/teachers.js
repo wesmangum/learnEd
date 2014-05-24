@@ -5,7 +5,7 @@
     $('#addCourse').click(addCourse);
   }
   function addCourse() {
-    ajax("/courses/create", 'get', null, (function(html) {
+    ajax("/courses/courseSnippet", 'get', null, (function(html) {
       $('#courseForm').append(html);
     }));
   }
