@@ -1,8 +1,21 @@
 extends ../shared/template
 
 block content
-  h1 new course
-  form#createCourse(method='post', action='/courses/create')
-    input#courseName(type='text', placeholder='Course Title', name = 'title', autofocus= true)
-    textarea#text(class='well well-lg', placeholder='Course Description', name='description')
-    button#submitButton Submit
+  h1= course.title
+
+  h3= course.description
+
+
+  #flashContainer.well.well-sm
+    #flashCards
+    button#addFlashCard(href='#') Add
+    //                    snippet
+
+  #testContainer.well.well-sm
+    #test
+    button#addTest(href='#') Add
+    //                    snippet
+
+
+block scripts
+  script(src='/js/es6/compiled/course.js')
