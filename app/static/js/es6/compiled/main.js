@@ -18,9 +18,14 @@ function ajax(url, type) {
   $(document).ready(init);
   function init() {
     $('.dropdown-menu').find('form').click(dropdown);
+    $('.glyphicon').click(activeTab);
   }
   function dropdown(e) {
     e.stopPropagation();
+  }
+  function activeTab() {
+    $('.active').removeClass('active');
+    $(this).parent().addClass('active');
   }
 })();
 
