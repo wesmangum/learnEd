@@ -1,21 +1,12 @@
 extends ../shared/template
 
 block content
-  h1 Teacher half ass dashboard
-  span= user.email
-  a(href='/courses/create') create a new course
+  h1= user.email
+  a#addCourse(href='/courses/create') Create Course
 
-  table#courses
-    thead
-      tr
-        th Course Name
-        th other thing
-    tbody
-      tr
-        td
-        td
+  #courseForm
 
-
+  #existingCourses
 
 
 block scripts
