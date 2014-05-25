@@ -17,3 +17,7 @@ exports.create = (req, res)=>{
 exports.flashCardForm = (req, res)=>{
   res.render('studyTools/addFlashCard');
 };
+
+exports.index = (req, res)=>{
+  res.render('courses/flashcard');
+};

@@ -35,6 +35,8 @@ function load(app, fn){
   app.get('/studyTools/addFlashCard', dbg, flashCards.flashCardForm);
   app.post('/flashcards/create', dbg, flashCards.create);
 
+  app.get('/flashcard', dbg, flashCards.index);
+
   console.log('Routes Loaded');
   fn();
 }
