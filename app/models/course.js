@@ -19,13 +19,15 @@ class Course{
   static findByCourseId(id, func){
     id = Mongo.ObjectID(id);
     courses.findOne({_id: id}, (error, result)=>{
-
+      console.log('error and result *******************');
+      console.log(error);
+      console.log(result);
       func(result);
     });
   }// end gindByUserId
 
   static findAllByTeacherId(id, func){
-    id = Mongo.ObjectID(id);
+    // id = Mongo.ObjectID(id);
     courses.find({teacherId: id}).toArray((error, courses)=>{
       func(courses);
     });

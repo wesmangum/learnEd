@@ -27,16 +27,27 @@ function load(app, fn){
   app.get('/logout', dbg, users.logout);
 
   app.get('/users/dashboard', dbg, users.dashboard);
-
-  app.get('/courses/create', dbg, courses.loadCourseForm);
+  app.get('/users/teachers/links', dbg, users.getLinks);
   app.post('/courses/create', dbg, courses.create);
+  app.get('/courses/show/:id', dbg, courses.show);
 
-  app.get('/courses/courseSnippet', dbg, courses.courseForm);
-  app.get('/studyTools/create/flashcards/:courseId', dbg, flashCards.create);
-  app.get('/studyTools/addFlashCard', dbg, flashCards.flashCardForm);
-  //app.post('/flashcards/create', dbg, flashCards.create);
+  app.post('/flashcards/create', dbg, flashCards.create);
+  app.get('/courses/:courseId/flashcards', dbg, flashCards.show);
+  app.post('/flashcards/create/newCard', dbg, flashCards.addNew);
 
-  app.get('/flashcard', dbg, flashCards.index);
+
+
+
+  // //everything down here gets moved up if used or deleted when we're done
+  // app.get('/courses/create', dbg, courses.loadCourseForm);
+  
+
+  // app.get('/courses/courseSnippet', dbg, courses.courseForm);
+  // app.get('/studyTools/create/flashcards/:courseId', dbg, flashCards.create);
+  // app.get('/studyTools/addFlashCard', dbg, flashCards.flashCardForm);
+  // //app.post('/flashcards/create', dbg, flashCards.create);
+
+  // app.get('/flashcard', dbg, flashCards.index);
 
   console.log('Routes Loaded');
   fn();

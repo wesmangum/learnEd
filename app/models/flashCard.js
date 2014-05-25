@@ -3,7 +3,7 @@
 var flashCards = global.nss.db.collection('flashCards');
 //var bcrypt = require('bcrypt');
 var Mongo = require('mongodb');
-//var _ = require('lodash');
+var _ = require('lodash');
 
 
 class FlashCard{
@@ -16,11 +16,14 @@ class FlashCard{
   static findByCourseId(id, func){
     id = Mongo.ObjectID(id);
     flashCards.findOne({courseId: id}, (error, result)=>{
+      result = _.create(FlashCard.prototype, result);
       func(result);
     });
   }// end gindByUserId
 
-
+  addFlashCard(sideA, sideB){
+    this.cards.push({sideA: sideA, sideB: sideB});
+  }
 
 
 

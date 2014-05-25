@@ -6,7 +6,9 @@ block content
 
   #flashcards
     if(!course.hasFlashCards)
-      button.createFlash Create Flashcards
+      form(method='post', action='/flashcards/create')
+        input#courseId(type='hidden', name='courseId', value= course._id)
+        button.createFlash Create Flashcards
 
     if(course.hasFlashCards)
       button.showFlash Show Flashcards

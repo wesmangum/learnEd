@@ -4,13 +4,19 @@
   $(document).ready(init);
 
   function init(){
-    $('#addCourse').click(addCourse);
+    getCourseLinks();
   }
 
-  function addCourse(){
-    ajax(`/courses/courseSnippet`, 'get', null, html=>{
-      $('#courseForm').append(html);
+  function getCourseLinks(){
+    $('#existingCourses').empty();
+
+    ajax('/users/teachers/links', 'get', null, html=>{
+    	$('#existingCourses').append(html);
     });
   }
 
 })();
+// function ajax(url, type,  data={}, success=response=>console.log(response), dataType='html'){
+//   'use strict';
+//   $.ajax({url: url, type: type, data: data, dataType: dataType, success:success});
+// }

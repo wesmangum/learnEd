@@ -2,11 +2,12 @@
   'use strict';
   $(document).ready(init);
   function init() {
-    $('#addCourse').click(addCourse);
+    getCourseLinks();
   }
-  function addCourse() {
-    ajax("/courses/courseSnippet", 'get', null, (function(html) {
-      $('#courseForm').append(html);
+  function getCourseLinks() {
+    $('#existingCourses').empty();
+    ajax('/users/teachers/links', 'get', null, (function(html) {
+      $('#existingCourses').append(html);
     }));
   }
 })();

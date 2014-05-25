@@ -4,10 +4,20 @@
 var users = global.nss.db.collection('users');
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
+var Course = traceur.require(__dirname + '/../models/course.js');
 var Mongo = require('mongodb');
 
 exports.loadRegister = (req, res)=>{
   res.render('users/register', {title: 'LearnEd: register'});
+};
+
+exports.getLinks = (req, res)=>{
+  var userId = req.session.userId;
+  Course.findAllByTeacherId(userId, courses=>{
+    res.render('users/teachers/courseLinks', {courses: courses}, (err, response)=>{
+      res.send(response);
+    });
+  });
 };
 
 exports.register = (req, res)=>{

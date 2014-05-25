@@ -4,17 +4,15 @@ block content
   h1 Flashcards
 
   #input.well
-    textarea.well(type='text', name='sideA', placeholder='Side A')
-    textarea.well(type='text', name='sideB', placeholder='Side B')
-    button#submitFlashcard Submit
+    textarea.well.sideA(type='text', name='sideA', placeholder='Side A')
+    textarea.well.sideB(type='text', name='sideB', placeholder='Side B')
+    input.course(type='hidden', name='courseId', value= '#{courseId}')
+    button#submit Submit
 
 
 
 
   #cards
 
-
-
-
-
 block scripts
+    script(src='/js/es6/compiled/flashCards.js')
