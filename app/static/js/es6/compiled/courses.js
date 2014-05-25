@@ -14,8 +14,7 @@
   function createFlashCard() {
     var course = $('h1').attr('data-id');
     ajax('/studyTools/create/flashcards', 'get', {courseId: course}, (function(html) {
-      $('#flashcards').empty();
-      $('#flashcards').append(html);
+      console.log(html);
     }));
   }
   function addNewCard() {}

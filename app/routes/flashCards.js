@@ -8,9 +8,9 @@ var Mongo = require('mongodb');
 
 
 exports.create = (req, res)=>{
-  var fCard = new FlashCard(req.body.courseId);
+  var fCard = new FlashCard(req.query.courseId);
   flashCards.save(fCard, (error, response)=>{
-    res.render('courses/flashCard', {card: response});
+    res.redirect('courses/flashCard', {card: response});
   });
 };
 
