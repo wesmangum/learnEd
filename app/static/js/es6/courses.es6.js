@@ -6,7 +6,8 @@
   function init(){
     $('#addFlashCard').click(addFlashCardForm);
     $('#flashForm').on('click', '.submitFC', addNewCard);
-  }
+    $('.createFlash').click(createFlashCard);
+}
 
 
   function addFlashCardForm(){
@@ -15,6 +16,13 @@
     });
   }
 
+  function createFlashCard(){
+    var course = $('h1').attr('data-id');
+    ajax('/studyTools/create/flashcards', 'get', {courseId: course}, html=>{
+      $('#flashcards').empty();
+      $('#flashcards').append(html);
+    });
+  }
 
   function addNewCard(){
     // var sideA = $('.sideA').val();

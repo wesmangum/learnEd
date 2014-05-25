@@ -32,8 +32,9 @@ function load(app, fn){
   app.post('/courses/create', dbg, courses.create);
 
   app.get('/courses/courseSnippet', dbg, courses.courseForm);
+  app.get('/studyTools/create/flashcards', dbg, flashCards.create);
   app.get('/studyTools/addFlashCard', dbg, flashCards.flashCardForm);
-  app.post('/flashcards/create', dbg, flashCards.create);
+  //app.post('/flashcards/create', dbg, flashCards.create);
 
   console.log('Routes Loaded');
   fn();

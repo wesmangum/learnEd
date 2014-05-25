@@ -10,7 +10,7 @@ var Mongo = require('mongodb');
 exports.create = (req, res)=>{
   var fCard = new FlashCard(req.body.courseId);
   flashCards.save(fCard, (error, response)=>{
-    res.render('studyTools/addFlashCard', {});
+    res.render('courses/flashCard', {card: response});
   });
 };
 
