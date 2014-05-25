@@ -34,7 +34,7 @@ function load(app, fn){
   app.post('/flashcards/create', dbg, flashCards.create);
   app.get('/courses/:courseId/flashcards', dbg, flashCards.show);
   app.post('/flashcards/create/newCard', dbg, flashCards.addNew);
-
+  app.get('/flashcards/getCards', dbg, flashCards.loadCards);
 
 
 
