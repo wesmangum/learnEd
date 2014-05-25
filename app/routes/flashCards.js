@@ -6,15 +6,13 @@ var traceur = require('traceur');
 var FlashCard = traceur.require(__dirname + '/../models/flashCard.js');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Mongo = require('mongodb');
-var _ = require('lodash');
+//var _ = require('lodash');
 
 
 exports.create = (req, res)=>{
 	var  idString = req.body.courseId;
 	var courseId = Mongo.ObjectID(idString);
   	var fCard = new FlashCard(idString);
-  	console.log('LOOK HERE');
-  	console.log(idString);
   	Course.findByCourseId(idString, course=>{
   		course.hasFlashCards = true;
   		courses.save(course, ()=>{
@@ -31,17 +29,23 @@ exports.show = (req, res)=>{
 	res.render('courses/flashCard', {courseId: course});
 };
 
+exports.loadCards = (req, res)=>{
+	FlashCard.findByCourseId(req.query.courseId, response=>{
+		res.render('courses/cardTable', {card: response}, (err, response)=>{
+				res.send(response);
+			});
+	});	
+};
+
 exports.addNew = (req, res)=>{
-	flashCards.findOne({courseId: req.body.courseId}, cardObj=>{
-		cardObj = _.create(FlashCard.prototype, cardObj);
-		cardObj.addFlashCard(req.body.sideA, req.body.sideB);
-		console.log(cardObj);
+	flashCards.findOne({courseId: req.body.courseId}, (err, cardObj)=>{
+		cardObj.cards.push({sideA: req.body.sideA, sideB: req.body.sideB});
 		flashCards.save(cardObj, (err, response)=>{
-			console.log(response);
+			res.render('courses/cardTable', {card: cardObj}, (err, response)=>{
+				res.send(response);
+			});
 		});
 	});
-	//courseId, sideA, sideB
-	console.log(req.body);
 };
 
 exports.flashCardForm = (req, res)=>{
