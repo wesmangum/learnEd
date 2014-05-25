@@ -1,4 +1,17 @@
-form
-  textarea.well.well-sm.sideA(type='text', placeholder='Front')
-  textarea.well.well-sm.sideB(type='text', placeholder='Back')
-  button.submitFC Submit
+extends ../shared/template
+block content
+
+  form
+    textarea.well.well-sm.sideA(type='text', placeholder='Front')
+    textarea.well.well-sm.sideB(type='text', placeholder='Back')
+    button.submitFC Submit
+
+  #flashcards
+
+
+  a(href='/courses/course')
+    button#save Save
+
+
+block scripts
+  script(src='/js/es6/compiled/flashcards.js')
