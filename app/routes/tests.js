@@ -1,6 +1,7 @@
 /* jshint unused:false*/
 'use strict';
 var courses = global.nss.db.collection('courses');
+var users = global.nss.db.collection('users');
 var tests = global.nss.db.collection('tests');
 var flashCards = global.nss.db.collection('flashCards');
 var traceur = require('traceur');
@@ -27,7 +28,15 @@ exports.create = (req, res)=>{
 
 exports.show = (req, res)=>{
 	var course = req.params.courseId;
-	res.render('courses/test', {courseId: course});
+	var id = Mongo.ObjectID(req.session.userId);
+	users.findOne({_id: id}, (err, user)=>{
+		if(user.type === 'teacher'){
+			res.render('courses/test', {courseId: course});
+		}
+		else{
+			res.render('courses/student/test', {courseId: course});
+		}
+	});
 };
 
 exports.addQuestion = (req, res)=>{
@@ -43,8 +52,19 @@ exports.addQuestion = (req, res)=>{
 
 exports.loadQuestions = (req, res)=>{
 	Test.findByCourseId(req.query.courseId, response=>{
-		res.render('courses/testTable', {test: response}, (err, response)=>{
-				res.send(response);
-			});
+		var id = Mongo.ObjectID(req.session.userId);
+		users.findOne({_id: id}, (err, user)=>{
+			if(user.type === 'teacher'){
+				res.render('courses/testTable', {test: response}, (err, response)=>{
+					res.send(response);
+				});
+			}
+			else{
+				res.render('courses/student/testTable', {test: response}, (err, html)=>{
+					res.send(html);
+				});
+			}
+		});
+	
 	});	
 };

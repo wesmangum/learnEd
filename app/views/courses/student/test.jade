@@ -1,0 +1,9 @@
+extends ../../shared/template
+block content
+
+  h1 Test
+  input.course(type='hidden', value=courseId.toString(), name='courseId')
+  #questionList
+
+block scripts
+    script(src='/js/es6/compiled/tests.js')

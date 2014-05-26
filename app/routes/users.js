@@ -60,11 +60,6 @@ exports.getCourses = (req, res)=>{
         var courseObj = {title: result[i].title, description: result[i].description, score: user.courses[i].score, id: result[i]._id.toString()};
         courseInfo.push(courseObj);
       }
-
-      console.log(courseInfo);
-      // result.map(c=>{
-      //   return {title: c.title, description: c.description, score:}
-      // });
       res.render('courses/student/courseList', {courses: courseInfo}, (error, html)=>{
         res.send(html);
       });

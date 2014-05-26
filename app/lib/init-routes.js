@@ -49,17 +49,6 @@ function load(app, fn){
 
 
 
-  // //everything down here gets moved up if used or deleted when we're done
-  // app.get('/courses/create', dbg, courses.loadCourseForm);
-  
-
-  // app.get('/courses/courseSnippet', dbg, courses.courseForm);
-  // app.get('/studyTools/create/flashcards/:courseId', dbg, flashCards.create);
-  // app.get('/studyTools/addFlashCard', dbg, flashCards.flashCardForm);
-  // //app.post('/flashcards/create', dbg, flashCards.create);
-
-  // app.get('/flashcard', dbg, flashCards.index);
-
   console.log('Routes Loaded');
   fn();
 }

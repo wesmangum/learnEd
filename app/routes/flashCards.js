@@ -29,8 +29,6 @@ exports.show = (req, res)=>{
 	var course = req.params.courseId;
 	var id = Mongo.ObjectID(req.session.userId);
 	users.findOne({_id: id}, (err, user)=>{
-		console.log(user);
-
 		if (user.type === 'teacher') {
 			res.render('courses/flashCard', {courseId: course});
 		}else{

@@ -27,20 +27,6 @@
     });
   }
 
-  // function createFlashCard(event){
-  //   var sideA = $('.sideA').val();
-  //   var sideB = $('.sideB').val();
-  //   var course = $('.course').val();
-  //   $('.sideA').val('');
-  //   $('.sideB').val('');
-
-  //   ajax('/flashcards/create/newCard', 'post', {courseId: course, sideA: sideA, sideB: sideB}, html=>{
-  //     $('#cards').empty();
-  //     $('#cards').append(html);
-  //   });
-  //   event.preventDefault();
-  // }
-
   function loadQuestions(){
     var course = $('.course').val();
     ajax(`/tests/getQuestions`, 'get', {courseId: course}, html=>{
