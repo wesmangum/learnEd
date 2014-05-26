@@ -1,0 +1,41 @@
+extends ../../shared/template
+block content
+  h1(data-id= course._id)= course.title
+  h3= course.description
+
+  #flashcards
+    if(!course.hasFlashCards)
+      form(method='post', action='/flashcards/create')
+        input#courseId(type='hidden', name='courseId', value= course._id)
+        button.createFlash Create Flashcards
+
+    if(course.hasFlashCards)
+      form(method='get', action='/courses/#{course._id}/flashcards/')
+        button.showFlash Show Flashcards
+
+
+
+  #tests
+    if(!course.hasTests)
+      button.createTest Create a test
+    if(course.hasTests)
+      button.showTest Show Test
+
+
+
+
+
+  //-
+  //- #flashContainer.well.well-sm
+  //-   #flashForm
+  //-   #flashcards
+  //-   button#addFlashCard New Flash Card
+  //-
+  //- #testContainer.well.well-sm
+  //-   #testForm
+  //-   #test
+  //-   button#addTest Add Test
+  //-
+
+block scripts
+  script(src='/js/es6/compiled/courses.js')

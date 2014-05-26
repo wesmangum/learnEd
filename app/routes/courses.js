@@ -13,31 +13,28 @@ var async = require('async');
 exports.create = (req, res)=>{
   var courseObject = {teacherId: req.session.userId, description: req.body.description, title: req.body.title};
   var course = new Course(courseObject);
-  courses.save(course, (error, course)=>{  
+  courses.save(course, (error, course)=>{
     User.findByUserId(req.session.userId, user=>{
       user.courses.push(course._id);
       users.save(user, ()=>{
         res.redirect(`/courses/show/${course._id}`);
       });
-    });   
+    });
   });
 };
 
 exports.show = (req, res)=>{
   Course.findByCourseId(req.params.id, course=>{
-    console.log(course);
-    res.render('courses/course', {course: course});
+    User.findByUserId(req.session.userId, user=>{
+      console.log('useruseruser');
+      console.log(user);
+      res.render(`courses/${user.type}/course`, {course: course});
+    });
   });
 };
 
 exports.bookmark = (req, res)=>{
-  console.log(req.params.courseId);
-
   User.findByUserId(req.session.userId, response=>{
-
-    console.log(response.courses);
-
-
     async.each(response.courses, (c, callback)=>{
       if(c.courseId === req.params.courseId){
         callback(true);
@@ -54,10 +51,10 @@ exports.bookmark = (req, res)=>{
         }
       }
     );
-  }); 
+  });
 };
-  
-  
+
+
 
 
 exports.loadCourseForm = (req, res)=>{

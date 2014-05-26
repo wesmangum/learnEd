@@ -55,8 +55,10 @@ exports.dashboard = (req, res)=>{
     if(!user){
       res.redirect('/');
     }else if(user.type === 'student'){
+      //change the render url
       res.render(`users/student`, {user: user});
     }else if(user.type === 'teacher'){
+      //change the render url
       res.render(`users/teacher`, {user: user});
     }
   });

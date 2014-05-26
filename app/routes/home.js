@@ -6,6 +6,6 @@ exports.index = (req, res)=>{
 
   console.log('LOGIN');
   console.log(isLogin);
-  
+
   res.render('home/index', {isLogin:req.session, title: 'LearnEd'});
 };
