@@ -26,8 +26,6 @@ exports.create = (req, res)=>{
 exports.show = (req, res)=>{
   Course.findByCourseId(req.params.id, course=>{
     User.findByUserId(req.session.userId, user=>{
-      console.log('useruseruser');
-      console.log(user);
       res.render(`courses/${user.type}/course`, {course: course});
     });
   });

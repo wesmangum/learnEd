@@ -1,6 +1,7 @@
 /* jshint unused:false*/
 'use strict';
 var courses = global.nss.db.collection('courses');
+var users = global.nss.db.collection('users');
 var flashCards = global.nss.db.collection('flashCards');
 var traceur = require('traceur');
 var FlashCard = traceur.require(__dirname + '/../models/flashCard.js');
@@ -26,7 +27,17 @@ exports.create = (req, res)=>{
 
 exports.show = (req, res)=>{
 	var course = req.params.courseId;
-	res.render('courses/flashCard', {courseId: course});
+	var id = Mongo.ObjectID(req.session.userId);
+	users.findOne({_id: id}, (err, user)=>{
+		console.log(user);
+
+		if (user.type === 'teacher') {
+			res.render('courses/flashCard', {courseId: course});
+		}else{
+			res.render('courses/student/flashCards', {courseId: course});
+		}
+	});
+
 };
 
 exports.loadCards = (req, res)=>{

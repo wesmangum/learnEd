@@ -32,6 +32,7 @@ function load(app, fn){
 
   app.get('/users/dashboard', dbg, users.dashboard);
   app.get('/users/teachers/links', dbg, users.getLinks);
+  app.get('/users/students/courses', dbg, users.getCourses);
   app.post('/courses/create', dbg, courses.create);
   app.get('/courses/show/:id', dbg, courses.show);
 

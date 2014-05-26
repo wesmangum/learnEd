@@ -1,14 +1,15 @@
-extends ../../shared/template
+extends ../shared/template
 
 block content
   h1(data-id= course._id)= course.title
   h3= course.description
 
-
-    //   CHANGE THIS INTO STUDENT VIEW
-
-
   #flashcards
+    if(!course.hasFlashCards)
+      form(method='post', action='/flashcards/create')
+        input#courseId(type='hidden', name='courseId', value= course._id)
+        button.createFlash Create Flashcards
+
     if(course.hasFlashCards)
       form(method='get', action='/courses/#{course._id}/flashcards')
         button.showFlash Show Flashcards
@@ -16,7 +17,11 @@ block content
 
 
   #tests
-    if(course.hasTests)
+    if(!course.hasTest)
+      form(method='post', action='/tests/create')
+        input#courseId(type='hidden', name='courseId', value= course._id)
+        button.createTest Create Test
+    if(course.hasTest)
       form(method='get', action='/courses/#{course._id}/tests')
         button.showTest Show Test
 
@@ -36,5 +41,3 @@ block content
   //-   button#addTest Add Test
   //-
 
-block scripts
-  script(src='/js/es6/compiled/courses.js')

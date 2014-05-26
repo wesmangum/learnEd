@@ -50,6 +50,29 @@ exports.logout = (req, res)=>{
   res.redirect('/');
 };// end logout
 
+exports.getCourses = (req, res)=>{
+  var userId = req.session.userId;
+  User.findByUserId(userId, user=>{
+    var courses = user.courses.map(c=>c.courseId);
+    Course.findCourses(courses, result=>{
+      var courseInfo = [];
+      for(var i = 0; i < result.length; i++){
+        var courseObj = {title: result[i].title, description: result[i].description, score: user.courses[i].score, id: result[i]._id.toString()};
+        courseInfo.push(courseObj);
+      }
+
+      console.log(courseInfo);
+      // result.map(c=>{
+      //   return {title: c.title, description: c.description, score:}
+      // });
+      res.render('courses/student/courseList', {courses: courseInfo}, (error, html)=>{
+        res.send(html);
+      });
+    });
+  });
+
+};// end getCourses
+
 exports.dashboard = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
     if(!user){

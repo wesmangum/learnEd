@@ -1,0 +1,14 @@
+table
+	thead
+		th Course Title
+		th Course Description
+		th Current Score
+	tbody
+		each course in courses
+			tr
+				td
+					a(href='/courses/show/#{course.id}')= course.title
+				td
+					p= course.description
+				td
+					span= course.score

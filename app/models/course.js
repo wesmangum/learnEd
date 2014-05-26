@@ -33,6 +33,15 @@ class Course{
     });
   }// end gindByUserId
 
+  static findCourses(idArr, func){
+    var ids = idArr.map(i=>Mongo.ObjectID(i));
+    courses.find({_id: {$in: ids}}).toArray((error, result)=>{
+      func(result);
+    });
+  }
+
+
+
   // get hasFlashCards(){
   //   return this.hasFlashCards;
   // }
