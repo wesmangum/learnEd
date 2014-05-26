@@ -22,7 +22,7 @@ exports.create = (req, res)=>{
  			 });
   		});
   	});
-  
+
 };
 
 exports.show = (req, res)=>{
@@ -40,10 +40,19 @@ exports.show = (req, res)=>{
 
 exports.loadCards = (req, res)=>{
 	FlashCard.findByCourseId(req.query.courseId, response=>{
-		res.render('courses/cardTable', {card: response}, (err, response)=>{
-				res.send(response);
-			});
-	});	
+		var id = Mongo.ObjectID(req.session.userId);
+		users.findOne({_id: id}, (err, user)=>{
+			if (user.type === 'teacher') {
+				res.render('courses/cardTable', {card: response}, (err, response)=>{
+					res.send(response);
+				});
+			}else{
+				res.render('courses/student/cardTable', {card: response}, (err, html)=>{
+					res.send(html);
+				});
+			}
+		});
+	});
 };
 
 exports.addNew = (req, res)=>{
