@@ -1,5 +1,20 @@
-each item in card.cards
-    .sideA= item.sideA
+#showCards
 
-each item in card.cards
-    .sideB= item.sideB
+table#table.table-bordered
+  thead#thead
+    tr
+      th.well Side A
+      th.well Side B
+  tbody#tbody
+    each item in card.cards
+      tr
+        td.well.sideA= item.sideA
+        td.well.sideB= item.sideB
+
+  //- #aContainer.well.well-lg
+  //-   each item in card.cards
+  //-     .sideA= item.sideA
+  //-
+  //- #bContainer.well.well-lg
+  //-   each item in card.cards
+  //-     .sideB= item.sideB
