@@ -8,7 +8,7 @@
     loadQuestions();
     $('#submit').click(newQuestion);
   }
-  
+
   function newQuestion(){
     var question = $('#question').val();
     var answer1 = $('#ans1').val();
@@ -33,7 +33,7 @@
   //   var course = $('.course').val();
   //   $('.sideA').val('');
   //   $('.sideB').val('');
-    
+
   //   ajax('/flashcards/create/newCard', 'post', {courseId: course, sideA: sideA, sideB: sideB}, html=>{
   //     $('#cards').empty();
   //     $('#cards').append(html);
