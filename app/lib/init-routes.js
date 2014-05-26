@@ -26,6 +26,9 @@ function load(app, fn){
   app.post('/register', dbg, users.register);
   app.get('/logout', dbg, users.logout);
 
+  app.get('/courses/index', dbg, courses.index);
+  app.put('/courses/:courseId/bookmark', dbg, courses.bookmark);
+
   app.get('/users/dashboard', dbg, users.dashboard);
   app.get('/users/teachers/links', dbg, users.getLinks);
   app.post('/courses/create', dbg, courses.create);
