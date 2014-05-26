@@ -17,10 +17,13 @@ block content
 
 
   #tests
-    if(!course.hasTests)
-      button.createTest Create a test
-    if(course.hasTests)
-      button.showTest Show Test
+    if(!course.hasTest)
+      form(method='post', action='/tests/create')
+        input#courseId(type='hidden', name='courseId', value= course._id)
+        button.createTest Create Test
+    if(course.hasTest)
+      form(method='get', action='/courses/#{course._id}/tests')
+        button.showTest Show Test
 
 
 

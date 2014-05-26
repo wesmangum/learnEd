@@ -17,6 +17,7 @@ function load(app, fn){
   var home = traceur.require(__dirname + '/../routes/home.js');
   var users = traceur.require(__dirname + '/../routes/users.js');
   var courses = traceur.require(__dirname + '/../routes/courses.js');
+  var tests = traceur.require(__dirname + '/../routes/tests.js');
   var flashCards = traceur.require(__dirname + '/../routes/flashCards.js');
 
   app.get('/', dbg, home.index);
@@ -33,6 +34,12 @@ function load(app, fn){
   app.get('/users/teachers/links', dbg, users.getLinks);
   app.post('/courses/create', dbg, courses.create);
   app.get('/courses/show/:id', dbg, courses.show);
+
+  app.get('/courses/:courseId/tests', dbg, tests.show);
+
+  app.post('/tests/create', dbg, tests.create);
+  app.post('/tests/create/newQuestion', dbg, tests.addQuestion);
+  app.get('/tests/getQuestions', dbg, tests.loadQuestions);
 
   app.post('/flashcards/create', dbg, flashCards.create);
   app.get('/courses/:courseId/flashcards', dbg, flashCards.show);
