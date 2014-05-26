@@ -40,10 +40,12 @@ body{
   resize:none;
 }
 
-#table{
+#tableC{
   border-color:rgba(50,50,50,.5);
   background-color:#FEFEFE;
   text-align:center;
+  width:70%;
+  margin-left:15%;
   #thead{
     th{
       font-size:45px;
@@ -98,6 +100,9 @@ body{
   background-color:#FEFEFE;
   width:70%;
   thead{
+    #title{
+      width:30%;
+    }
     th{
       font-size:24px;
       text-align:center;
@@ -105,12 +110,19 @@ body{
   }
   tbody{
     td{
-      padding-left:15px;
+      position:relative;
+      padding:15px;
+      div{
+        width:60%;
+      }
+      #bookmark{
+        position:absolute;
+        right:5px;
+        bottom:5px;
+      }
     }
   }
-  #bookmark{
-    float:right;
-  }
+
 }
 
 
@@ -138,6 +150,55 @@ body{
     margin-bottom:10px;
   }
 }
+
+
+
+#testCreate{
+  position:relative;
+  width:55%;
+  #questions{
+    width:75%;
+    height:80%;
+  }
+  #answers{
+    position:absolute;
+    right:-10%;
+    top:10%;
+    height:100%;
+    width:50%;
+    display:block;
+    #a1, #a2, #a3{
+      margin-bottom:12px;
+    }
+  }
+  #submit{
+    height:20%;
+  }
+}
+
+#showTable{
+  thead{
+    th{
+      text-align:center;
+      font-size:25px;
+    }
+  }
+  #q{
+    text-align:center;
+    vertical-align:middle;
+  }
+  width:75%;
+  background-color:#FEFEFE;
+  .testAnswer{
+    .correct{
+      .glyphicon{
+        float:left;
+        margin-left:-5%;
+      }
+    }
+  }
+}
+
 
 #email{
   width:30%;

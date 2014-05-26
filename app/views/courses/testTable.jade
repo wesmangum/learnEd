@@ -1,12 +1,26 @@
-table
+table.table.table-bordered#showTable
 	thead
 		th question
 		th answers
 	tbody
 		each question in test.questions
 			tr
-				td= question.question
+				td#q= question.question
 				td
 					ul
 						each answer in question.answers
-							li(class=answer.isCorrect)= answer.answer
+							.testAnswer
+								if(answer.isCorrect==='true')
+									.correct
+										.glyphicon.glyphicon-ok
+										.answer(class=answer.isCorrect)= answer.answer
+
+								if(answer.isCorrect==='false')
+									li(class=answer.isCorrect)= answer.answer
+
+
+						//- each answer in question.answers
+						//- 	.testAnswer
+						//- 		li(class=answer.isCorrect)= answer.answer
+						//- 		if(answer.isCorrect==='true')
+						//- 			.glyphicon.glyphicon-ok

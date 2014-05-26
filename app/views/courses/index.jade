@@ -3,14 +3,15 @@ block content
 	table#courseTable.table-bordered
 		thead
 			tr
-				th Course Title
+				th#title Course Title
 				th Course Description
 		tbody
 			each course in courses
 				tr
 					td
 						a(href='/courses/show/#{course._id.toString()}')= course.title
-					td= course.description
+					td
+						div= course.description
 						button#bookmark(data-id= course._id.toString()).bookmark Bookmark Course
 
 block scripts
