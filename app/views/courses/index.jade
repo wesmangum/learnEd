@@ -1,0 +1,17 @@
+extends ../shared/template
+block content
+	table
+		thead
+			th Course Title
+			th Course Description
+		tbody
+			each course in courses
+				tr
+					td 
+						a(href='#')= course.title 
+					td= course.description
+					td
+						button(data-id= course._id.toString()).bookmark Bookmark Course
+
+block scripts
+	script(src='/js/es6/compiled/courseIndex.js')

@@ -7,7 +7,8 @@ var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var User = traceur.require(__dirname + '/../models/user.js');
 var Mongo = require('mongodb');
-
+var _ = require('lodash');
+var async = require('async');
 
 exports.create = (req, res)=>{
   var courseObject = {teacherId: req.session.userId, description: req.body.description, title: req.body.title};
@@ -29,8 +30,47 @@ exports.show = (req, res)=>{
   });
 };
 
+exports.bookmark = (req, res)=>{
+  console.log(req.params.courseId);
+
+  User.findByUserId(req.session.userId, response=>{
+
+    console.log(response.courses);
+
+
+    async.each(response.courses, (c, callback)=>{
+      if(c.courseId === req.params.courseId){
+        callback(true);
+      }else{
+      callback(false);
+      }}, isPresent=>{
+        if(!isPresent){
+          response.courses.push({courseId: req.params.courseId, score: 0});
+          users.save(response, (err, user)=>{
+            res.send('Added to Bookmarks');
+          });
+        }else{
+          res.send('Already Bookmarked');
+        }
+      }
+    );
+  }); 
+};
+  
+  
+
+
 exports.loadCourseForm = (req, res)=>{
   res.render('courses/course', {title: 'Add Course'});
+};
+
+exports.index = (req, res)=>{
+  courses.find().toArray((err, result)=>{
+    User.findByUserId(req.session.userId, user=>{
+      res.render('courses/index', {courses: result});
+      //YOU ARE HERE
+    });
+  });
 };
 
 
