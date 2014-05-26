@@ -1,0 +1,28 @@
+extends ../shared/template
+block content
+
+  h1 Test
+
+
+  #specifity.well
+    #inputTest
+      textarea#question.well(type='text', name='question', placeholder='Question')
+      input(type='radio', name='isCorrect', value='1')
+      input#ans1(type='text', name='answer1', placeholder='Answer 1')
+      input(type='radio', name='isCorrect', value='2')
+      input#ans2(type='text', name='answer2', placeholder='Answer 2')
+      input(type='radio', name='isCorrect', value='3')
+      input#ans3(type='text', name='answer3', placeholder='Answer 3')
+      input(type='radio', name='isCorrect', value='4')
+      input#ans4(type='text', name='answer4', placeholder='Answer 4')
+
+      input.course(type='hidden', name='courseId', value= '#{courseId}')
+    button.button#submit Submit
+
+
+
+
+  #questionList
+
+block scripts
+    script(src='/js/es6/compiled/tests.js')

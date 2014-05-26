@@ -1,0 +1,12 @@
+table
+	thead
+		th question
+		th answers
+	tbody
+		each question in test.questions
+			tr
+				td= question.question
+				td
+					ul
+						each answer in question.answers
+							li(class=answer.isCorrect)= answer.answer
