@@ -47,7 +47,8 @@ exports.loadCards = (req, res)=>{
 					res.send(response);
 				});
 			}else{
-				res.render('courses/student/cardTable', {card: response}, (err, html)=>{
+				console.log(response);
+				res.render('courses/student/cardTable', {cards: response}, (err, html)=>{
 					res.send(html);
 				});
 			}
