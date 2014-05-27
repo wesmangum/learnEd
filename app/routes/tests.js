@@ -17,15 +17,15 @@ exports.submitTest = (req, res)=>{
 	Test.findByCourseId(req.params.id, test=>{
 		test.gradeTest(answerArr, test, score=>{
 			User.findByUserId(req.session.userId, user=>{
-				//user.courses
-				//find one by courseId
 				var courses= user.courses;
 				var currentCourse = _.filter(courses, {courseId:req.params.id});
-				if(currentCourse[0].score<=score){
+				if((currentCourse[0].score*1)<=score){
 					currentCourse[0].score= score;
 					users.save(user, ()=>{
-						res.redirect('/users/dashboard');
+						res.render('courses/student/score', {score:score});
 					});
+				}else{
+					res.render('courses/student/score', {score:score});
 				}
 				
 			});

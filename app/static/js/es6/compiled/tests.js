@@ -11,10 +11,8 @@
       return each.value.toString();
     }));
     var courseId = $('.course').val();
-    console.log(courseId);
-    console.log(ans);
-    ajax(("/courses/submitTest/" + courseId), 'put', {answers: ans}, (function(html) {
-      console.log(html);
+    ajax(("/courses/submitTest/" + courseId), 'put', {answers: ans}, (function(response) {
+      $('#score').append(response);
     }));
   }
   function newQuestion() {
@@ -25,6 +23,12 @@
     var answer4 = $('#ans4').val();
     var correct = $('input:checked').val();
     var courseId = $('.course').val();
+    $('#question').val('');
+    $('#ans1').val('');
+    $('#ans2').val('');
+    $('#ans3').val('');
+    $('#ans4').val('');
+    $('input:checked').checked = false;
     var answerArr = [{
       answer: answer1,
       isCorrect: false
@@ -43,7 +47,6 @@
       question: question,
       answers: answerArr
     };
-    console.log(questionObj);
     ajax('/tests/create/newQuestion', 'post', {
       questionObj: questionObj,
       courseId: courseId
