@@ -7,11 +7,11 @@ block content
     if(!course.hasFlashCards)
       form(method='post', action='/flashcards/create')
         input#courseId(type='hidden', name='courseId', value= course._id)
-        button.createFlash Create Flashcards
+        button.button.createFlash Create Flashcards
 
     if(course.hasFlashCards)
       form(method='get', action='/courses/#{course._id}/flashcards/')
-        button.showFlash Show Flashcards
+        button.button.showFlash Show Flashcards
 
 
 
@@ -19,10 +19,10 @@ block content
     if(!course.hasTest)
       form(method='post', action='/tests/create')
         input#courseId(type='hidden', name='courseId', value= course._id)
-        button.createTest Create Test
+        button.button.createTest Create Test
     if(course.hasTest)
       form(method='get', action='/courses/#{course._id}/tests')
-        button.showTest Show Test
+        button.button.showTest Show Test
 
 
 

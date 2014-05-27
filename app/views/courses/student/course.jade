@@ -11,14 +11,14 @@ block content
   #flashcards
     if(course.hasFlashCards)
       form(method='get', action='/courses/#{course._id}/flashcards')
-        button.showFlash Show Flashcards
+        button.button.showFlash Show Flashcards
 
 
 
   #tests
     if(course.hasTest)
       form(method='get', action='/courses/#{course._id}/tests')
-        button.showTest Show Test
+        button.button.showTest Take Test
 
 
 
