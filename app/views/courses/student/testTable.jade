@@ -1,11 +1,10 @@
 //- - var index = -1;
 each question in test.questions
 	form.question
-
 		div.questionHere.well= question.question
 		.answerContainer.well.well-sm
 			each answer in question.answers
 					.smallContainer.well.well-sm
-						input(type='radio', value=answer.answer, name='answer')
+						input.answerInput(type='radio', value=answer.answer, name='answer')
 						.answer= answer.answer
 button.button#submitIt Submit

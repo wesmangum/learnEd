@@ -6,11 +6,32 @@ var tests = global.nss.db.collection('tests');
 var flashCards = global.nss.db.collection('flashCards');
 var traceur = require('traceur');
 var FlashCard = traceur.require(__dirname + '/../models/flashCard.js');
+var User = traceur.require(__dirname + '/../models/user.js');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Test = traceur.require(__dirname + '/../models/test.js');
 var Mongo = require('mongodb');
-//var _ = require('lodash');
+var _ = require('lodash');
 
+exports.submitTest = (req, res)=>{
+	var answerArr = req.body.answers;
+	Test.findByCourseId(req.params.id, test=>{
+		test.gradeTest(answerArr, test, score=>{
+			User.findByUserId(req.session.userId, user=>{
+				//user.courses
+				//find one by courseId
+				var courses= user.courses;
+				var currentCourse = _.filter(courses, {courseId:req.params.id});
+				if(currentCourse[0].score<=score){
+					currentCourse[0].score= score;
+					users.save(user, ()=>{
+						res.redirect('/users/dashboard');
+					});
+				}
+				
+			});
+		});
+	});
+};
 
 exports.create = (req, res)=>{
 	var  idString = req.body.courseId;

@@ -35,8 +35,9 @@ function load(app, fn){
   app.get('/users/students/courses', dbg, users.getCourses);
   app.post('/courses/create', dbg, courses.create);
   app.get('/courses/show/:id', dbg, courses.show);
-
   app.get('/courses/:courseId/tests', dbg, tests.show);
+  app.put('/courses/submitTest/:id', dbg, tests.submitTest);
+  
 
   app.post('/tests/create', dbg, tests.create);
   app.post('/tests/create/newQuestion', dbg, tests.addQuestion);

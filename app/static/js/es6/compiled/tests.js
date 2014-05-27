@@ -4,6 +4,18 @@
   function init() {
     loadQuestions();
     $('#submit').click(newQuestion);
+    $('#questionList').on('click', '#submitIt', submitTest);
+  }
+  function submitTest() {
+    var ans = $('input:checked').toArray().map((function(each) {
+      return each.value.toString();
+    }));
+    var courseId = $('.course').val();
+    console.log(courseId);
+    console.log(ans);
+    ajax(("/courses/submitTest/" + courseId), 'put', {answers: ans}, (function(html) {
+      console.log(html);
+    }));
   }
   function newQuestion() {
     var question = $('#question').val();
