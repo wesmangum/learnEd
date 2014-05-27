@@ -93,21 +93,43 @@ body{
   }
 }
 
+// -----------------------
+
+#courses{
+  #courseTable{
+    thead{
+      th{
+        width:33%;
+      }
+    }
+    tbody{
+      text-align:center;
+      td{
+        vertical-align:middle;
+      }
+      td#score{
+        font-size:35px;
+      }
+      td#title{
+        font-size:20px;
+      }
+    }
+  }
+}
+
+// -----------------------
 
 
 #questionList.well.well-lg{
   width:50%;
-
-
-  #questionHere{
+  .questionHere{
     font-size:25px;
     margin-bottom:0px;
   }
-
-  #answerContainer{
+  .answerContainer{
     margin-bottom:50px;
     padding:-10px;
-    #smallContainer{
+    .smallContainer{
       margin-left:15%;
       font-size:15px;
       width:70%;
@@ -117,7 +139,35 @@ body{
       }
     }
   }
+}
 
+#magicCards{
+  .parentContainer{
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition-duration: 1500ms;
+
+    margin:10px;
+    display:inline-block;
+    float:left;
+    min-height:150px;
+    .sideA, .sideB{
+      position:relative;
+      min-height:150px;
+      background-color:#FEFEFE;
+      width:250px;
+      margin-bottom:5px;
+      h3{
+        margin:0;
+        font-size:20px;
+        text-align:center;
+        padding:30px;
+      }
+    }
+
+    .sideB{
+      -webkit-transform: rotateY(180deg);
+    }
+  }
 }
 
 
@@ -150,7 +200,6 @@ body{
       }
     }
   }
-
 }
 
 

@@ -1,19 +1,8 @@
-#showCards
+//need a container for current selected and then flip the clicked card
 
-
-
-
-
-
-
-
-//- table#tableC.table.table-bordered
-//-   thead#thead
-//-     tr
-//-       th.well Side A
-//-       th.well Side B
-//-   tbody#tbody
-//-     each item in card.cards
-//-       tr
-//-         td.well.sideA= item.sideA
-//-         td.well.sideB= item.sideB
+each card in cards.cards
+  .parentContainer
+    div.sideA
+      h3= card.sideA
+    div.sideB.hidden
+      h3= card.sideB
