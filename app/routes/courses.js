@@ -62,7 +62,7 @@ exports.loadCourseForm = (req, res)=>{
 exports.index = (req, res)=>{
   courses.find().toArray((err, result)=>{
     User.findByUserId(req.session.userId, user=>{
-      res.render('courses/index', {courses: result});
+      res.render('courses/index', {courses: result, user: user});
       //YOU ARE HERE
     });
   });

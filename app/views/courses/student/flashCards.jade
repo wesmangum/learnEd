@@ -3,6 +3,8 @@ extends ../../shared/template
 
 block content
 	h1 Flashcards
+	a.button.return(href='/courses/show/#{courseId}') Return To Course Page
+
 	input.course(type='hidden', value='#{courseId}', name='courseId')
 	#magicCards
 

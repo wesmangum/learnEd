@@ -12,7 +12,8 @@ block content
 						a(href='/courses/show/#{course._id.toString()}')= course.title
 					td
 						div= course.description
-						button#bookmark(data-id= course._id.toString()).bookmark Bookmark Course
+						- if(user.type === 'student')
+							button.button#bookmark(data-id= course._id.toString()).bookmark Bookmark Course
 
 block scripts
 	script(src='/js/es6/compiled/courseIndex.js')
